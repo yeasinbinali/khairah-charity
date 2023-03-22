@@ -6,6 +6,7 @@ import DonationForm from "../../pages/DonationForm/DonationForm";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
 import Signup from "../../pages/Signup/Signup";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -18,11 +19,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/donation",
-        element: <Donation></Donation>,
+        element: <PrivateRoute><Donation></Donation></PrivateRoute>,
       },
       {
         path: '/donationForm/:id',
-        element: <DonationForm></DonationForm>
+        element: <PrivateRoute><DonationForm></DonationForm></PrivateRoute>
       },
       {
         path: "/signup",

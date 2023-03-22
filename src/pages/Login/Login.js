@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/UserContext";
 import img from "../../images/login&signup.svg";
 
@@ -7,6 +8,10 @@ const Login = () => {
   const [success, setSuccess] = useState("");
 
   const { login } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || '/';
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -19,6 +24,7 @@ const Login = () => {
         const user = result.user;
         setSuccess(user);
         setError('');
+        navigate(from, {replace: true});
       })
       .catch((error) => {
         const errorMessage = error.message;

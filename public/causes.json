@@ -1,54 +1,45 @@
 [
     {
-        "id": 1,
         "name": "Children support",
         "amount": 250,
         "img": "https://i.ibb.co/Jx4jDGT/child-Support.png"
     },
     {
-        "id": 2,
         "name": "Refuge selter",
         "amount": 650,
         "img": "https://i.ibb.co/0mcdZR7/refuse-Shelter.png"
     },
     {
-        "id": 3,
         "name": "Food charity",
         "amount": 150,
         "img": "https://i.ibb.co/JjdcWzS/food-Charity.png"
     },
     {
-        "id": 4,
         "name": "Clean water for children",
         "amount": 75,
         "img": "https://i.ibb.co/0Brj6LM/river-Clean.png"
     }, 
     {
-        "id": 5,
         "name": "New books for children",
         "amount": 25,
         "img": "https://i.ibb.co/ZzzXH5M/newBooks.png"
     },
     {
-        "id": 6,
         "name": "Give IT help to local adults",
         "amount": 850,
         "img": "https://i.ibb.co/jDcmX0T/ITHelp.png"
     },
     {
-        "id": 7,
         "name": "Send child to school for a year",
         "amount": 65,
         "img": "https://i.ibb.co/gSFSwZN/yannis-h-ua-Pa-EM7-Mi-QQ-unsplash-1.jpg"
     },
     {
-        "id": 8,
         "name": "Food and home for children",
         "amount": 450,
         "img": "https://i.ibb.co/jv988MS/timothy-barlin-n-Fc2-IRUHr-M-unsplash-1-1.jpg"
     },
     {
-        "id": 9,
         "name": "Education for poor children",
         "amount": 200,
         "img": "https://i.ibb.co/xhQDwxB/sanjoy-sadhukhan-3-QNEf-o-N-WI-unsplash-1-1.jpg"

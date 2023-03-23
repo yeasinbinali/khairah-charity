@@ -23,7 +23,10 @@ export const router = createBrowserRouter([
       },
       {
         path: '/donationForm/:id',
-        element: <PrivateRoute><DonationForm></DonationForm></PrivateRoute>
+        element: <PrivateRoute><DonationForm></DonationForm></PrivateRoute>,
+        loader: async({params}) => {
+          return fetch(`http://localhost:5000/causes/${params.id}`)
+        }
       },
       {
         path: "/signup",

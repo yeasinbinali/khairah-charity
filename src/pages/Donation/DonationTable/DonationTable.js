@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const DonationTable = ({ give }) => {
-  const { giver, phone, email, amount, serviceId } = give;
+const DonationTable = ({give, handleDelete, handleStatusUpdated}) => {
+  const { giver, phone, email, amount, serviceId, _id, status } = give;
   const [causes, setCauses] = useState([]);
-  
+
     useEffect(() => {
         fetch(`http://localhost:5000/causes/${serviceId}`)
         .then(res => res.json())
@@ -16,9 +16,7 @@ const DonationTable = ({ give }) => {
       {/* row 1 */}
       <tr>
         <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
+          <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs"><Link>X</Link></button>
         </th>
         <td>
           <div className="flex items-center space-x-3">
@@ -45,7 +43,7 @@ const DonationTable = ({ give }) => {
         </td>
         <td>{phone}</td>
         <th>
-          <button className="btn btn-ghost btn-xs"><Link>Pending</Link></button>
+          <button onClick={() => handleStatusUpdated(_id)} className="btn btn-ghost btn-xs">{status ? status : 'Pending'}</button>
         </th>
       </tr>
     </>

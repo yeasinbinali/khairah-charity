@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from "../../contexts/UserContext";
 
 const DonationForm = () => {
     const {user} = useContext(AuthContext)
     const {name, amount, _id} = useLoaderData();
+    const navigate = useNavigate();
     
     const handleSubmitForDonation = (event) => {
         event.preventDefault();
@@ -38,6 +39,7 @@ const DonationForm = () => {
             if(data.acknowledged){
                 alert('Your information has been successfully sent!!!')
                 form.reset();
+                navigate('/donation');
             }
         })
         .catch(err => console.error(err))

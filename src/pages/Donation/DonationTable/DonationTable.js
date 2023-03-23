@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const DonationTable = ({give, handleDelete, handleStatusUpdated}) => {
+const DonationTable = ({ give, handleDelete, handleStatusUpdated }) => {
   const { giver, phone, email, amount, serviceId, _id, status } = give;
   const [causes, setCauses] = useState([]);
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/causes/${serviceId}`)
-        .then(res => res.json())
-        .then(data => setCauses(data))
-    }, [serviceId])
+  useEffect(() => {
+    fetch(`https://khairah-charity-server.vercel.app/causes/${serviceId}`)
+      .then((res) => res.json())
+      .then((data) => setCauses(data));
+  }, [serviceId]);
 
   return (
     <>
       {/* row 1 */}
       <tr>
         <th>
-          <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs"><Link>X</Link></button>
+          {status ? (
+            ""
+          ) : (
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn btn-ghost btn-xs"
+            >
+              <Link>X</Link>
+            </button>
+          )}
         </th>
         <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img
-                  src={causes.img}
-                  alt="Avatar Tailwind CSS Component"
-                />
+                <img src={causes.img} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             <div>
@@ -37,13 +43,16 @@ const DonationTable = ({give, handleDelete, handleStatusUpdated}) => {
         <td>
           {giver}
           <br />
-          <span className="badge badge-ghost badge-sm">
-            {email}
-          </span>
+          <span className="badge badge-ghost badge-sm">{email}</span>
         </td>
         <td>{phone}</td>
         <th>
-          <button onClick={() => handleStatusUpdated(_id)} className="btn btn-ghost btn-xs">{status ? status : 'Pending'}</button>
+          <button
+            onClick={() => handleStatusUpdated(_id)}
+            className="btn btn-ghost btn-xs"
+          >
+            {status ? status : "Pending"}
+          </button>
         </th>
       </tr>
     </>

@@ -7,48 +7,52 @@ const Donation = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/given?email=${user?.email}`)
+    fetch(
+      `https://khairah-charity-server.vercel.app/given?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setGiven(data));
   }, [user?.email]);
 
   const handleDelete = (id) => {
-    const proceed = window.confirm("Are you sure, you want to delete this fund?");
-    if(proceed){
-      fetch(`http://localhost:5000/given/${id}`, {
-        method: 'DELETE'
+    const proceed = window.confirm(
+      "Are you sure, you want to delete this fund?"
+    );
+    if (proceed) {
+      fetch(`https://khairah-charity-server.vercel.app/given/${id}`, {
+        method: "DELETE",
       })
-      .then(res => res.json())
-      .then(data => {
-        if(data.deletedCount > 0){
-          const remaining = given.filter(gvn => gvn._id !== id)
-          setGiven(remaining);
-          alert('Fund deleted successfully');
-        }
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            const remaining = given.filter((gvn) => gvn._id !== id);
+            setGiven(remaining);
+            alert("Fund deleted successfully");
+          }
+        });
     }
   };
 
-  const handleStatusUpdated = id => {
-    fetch(`http://localhost:5000/given/${id}`, {
-      method: 'PATCH',
+  const handleStatusUpdated = (id) => {
+    fetch(`https://khairah-charity-server.vercel.app/given/${id}`, {
+      method: "PATCH",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json",
       },
-      body: JSON.stringify({status: 'Approved'})
+      body: JSON.stringify({ status: "Approved" }),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if(data.modifiedCount > 0){
-        const remaining = given.filter(gvn => gvn._id !== id);
-        const approving = given.find(gvn => gvn._id === id);
-        approving.status = 'Approved';
-        const newFunds = [approving, ...remaining];
-        setGiven(newFunds)
-      }
-    })
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          const remaining = given.filter((gvn) => gvn._id !== id);
+          const approving = given.find((gvn) => gvn._id === id);
+          approving.status = "Approved";
+          const newFunds = [approving, ...remaining];
+          setGiven(newFunds);
+        }
+      });
+  };
 
   return (
     <div>

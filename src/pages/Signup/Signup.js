@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/UserContext";
 import img from "../../images/login&signup.svg";
 
 const Signup = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
   const { createUser } = useContext(AuthContext);
 
@@ -19,6 +21,7 @@ const Signup = () => {
         const user = result.user;
         setSuccess(user);
         setError('');
+        navigate('/');
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -106,7 +109,7 @@ const Signup = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="email"
                   name="email"
                   required
@@ -118,7 +121,7 @@ const Signup = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="password"
                   name="password"
                   required

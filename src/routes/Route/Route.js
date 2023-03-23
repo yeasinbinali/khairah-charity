@@ -19,14 +19,24 @@ export const router = createBrowserRouter([
       },
       {
         path: "/donation",
-        element: <PrivateRoute><Donation></Donation></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Donation></Donation>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/donationForm/:id',
-        element: <PrivateRoute><DonationForm></DonationForm></PrivateRoute>,
-        loader: async({params}) => {
-          return fetch(`http://localhost:5000/causes/${params.id}`)
-        }
+        path: "/donationForm/:id",
+        element: (
+          <PrivateRoute>
+            <DonationForm></DonationForm>
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => {
+          return fetch(
+            `https://khairah-charity-server.vercel.app/causes/${params.id}`
+          );
+        },
       },
       {
         path: "/signup",

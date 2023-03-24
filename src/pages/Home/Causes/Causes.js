@@ -5,7 +5,7 @@ const Causes = () => {
   const [causes, setCauses] = useState([]);
 
   useEffect(() => {
-    fetch("https://khairah-charity-server.vercel.app/causes")
+    fetch("http://localhost:5000/causes")
       .then((res) => res.json())
       .then((data) => setCauses(data));
   }, []);

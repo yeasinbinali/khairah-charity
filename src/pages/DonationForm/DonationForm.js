@@ -27,7 +27,7 @@ const DonationForm = () => {
       message,
     };
 
-    fetch("https://khairah-charity-server.vercel.app/given", {
+    fetch("http://localhost:5000/given", {
       method: "POST",
       headers: {
         "content-type": "application/json",

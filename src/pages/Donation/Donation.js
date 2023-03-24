@@ -4,22 +4,29 @@ import DonationTable from "./DonationTable/DonationTable";
 
 const Donation = () => {
   const [given, setGiven] = useState([]);
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(
-      `https://khairah-charity-server.vercel.app/given?email=${user?.email}`
-    )
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/given?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('khairah-charity')}`
+      }
+    })
+      .then((res) =>  {
+        if(res.status === 401 || res.status === 403){
+          logOut();
+        }
+        return res.json()
+      })
       .then((data) => setGiven(data));
-  }, [user?.email]);
+  }, [user?.email, logOut]);
 
   const handleDelete = (id) => {
     const proceed = window.confirm(
       "Are you sure, you want to delete this fund?"
     );
     if (proceed) {
-      fetch(`https://khairah-charity-server.vercel.app/given/${id}`, {
+      fetch(`http://localhost:5000/given/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -34,7 +41,7 @@ const Donation = () => {
   };
 
   const handleStatusUpdated = (id) => {
-    fetch(`https://khairah-charity-server.vercel.app/given/${id}`, {
+    fetch(`http://localhost:5000/given/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

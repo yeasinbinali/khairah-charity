@@ -33,9 +33,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) => {
-          return fetch(
-            `https://khairah-charity-server.vercel.app/causes/${params.id}`
-          );
+          return fetch(`http://localhost:5000/causes/${params.id}`);
         },
       },
       {

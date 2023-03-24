@@ -6,7 +6,7 @@ const DonationTable = ({ give, handleDelete, handleStatusUpdated }) => {
   const [causes, setCauses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/causes/${serviceId}`)
+    fetch(`https://khairah-charity-server.vercel.app/causes/${serviceId}`)
       .then((res) => res.json())
       .then((data) => setCauses(data));
   }, [serviceId]);

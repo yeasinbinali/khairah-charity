@@ -7,16 +7,19 @@ const Donation = () => {
   const { user, logOut } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/given?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('khairah-charity')}`
+    fetch(
+      `https://khairah-charity-server.vercel.app/given?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("khairah-charity")}`,
+        },
       }
-    })
-      .then((res) =>  {
-        if(res.status === 401 || res.status === 403){
+    )
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
           logOut();
         }
-        return res.json()
+        return res.json();
       })
       .then((data) => setGiven(data));
   }, [user?.email, logOut]);
@@ -26,7 +29,7 @@ const Donation = () => {
       "Are you sure, you want to delete this fund?"
     );
     if (proceed) {
-      fetch(`http://localhost:5000/given/${id}`, {
+      fetch(`https://khairah-charity-server.vercel.app/given/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -41,7 +44,7 @@ const Donation = () => {
   };
 
   const handleStatusUpdated = (id) => {
-    fetch(`http://localhost:5000/given/${id}`, {
+    fetch(`https://khairah-charity-server.vercel.app/given/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

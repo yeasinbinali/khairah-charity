@@ -11,7 +11,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -23,31 +23,31 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         const currentUser = {
-          email: user.email
-        }
+          email: user.email,
+        };
         console.log(currentUser);
 
-        fetch('http://localhost:5000/jwt', {
-          method: 'POST',
+        fetch("https://khairah-charity-server.vercel.app/jwt", {
+          method: "POST",
           headers: {
-            'content-type': 'application/json'
+            "content-type": "application/json",
           },
-          body: JSON.stringify(currentUser)
+          body: JSON.stringify(currentUser),
         })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          localStorage.setItem('khairah-charity', data.token);
-        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("khairah-charity", data.token);
+          });
 
         setSuccess(user);
-        setError('');
-        navigate(from, {replace: true});
+        setError("");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage);
-        setSuccess('')
+        setSuccess("");
       });
   };
   return (

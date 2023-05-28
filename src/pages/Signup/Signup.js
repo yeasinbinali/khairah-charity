@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext";
 import img from "../../images/login&signup.svg";
+import { Typewriter } from "react-simple-typewriter";
 
 const Signup = () => {
   const [error, setError] = useState("");
@@ -20,13 +22,13 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         setSuccess(user);
-        setError('');
-        navigate('/');
+        setError("");
+        navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage);
-        setSuccess('');
+        setSuccess("");
       });
   };
   return (
@@ -91,7 +93,26 @@ const Signup = () => {
             className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
           >
             <div className="card-body">
-              <h1 className="text-4xl font-bold text-center">Signup</h1>
+              <h1
+              className='text-2xl'
+                style={{
+                  textAlign:'center',
+                  margin: "auto 0",
+                  fontWeight: "normal",
+                }}
+              >
+                <span style={{ color: "black", fontWeight: "bold" }}>
+                  <Typewriter
+                    words={["Signup", "Create an account"]}
+                    loop={Infinity}
+                    cursor
+                    cursorStyle="|"
+                    typeSpeed={80}
+                    deleteSpeed={40}
+                    delaySpeed={1000}
+                  />
+                </span>
+              </h1>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -131,6 +152,12 @@ const Signup = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Signup</button>
               </div>
+              <p className="text-center">
+                Already have an account?{" "}
+                <Link className="font-bold" to="/login">
+                  Login
+                </Link>
+              </p>
             </div>
           </form>
         </div>

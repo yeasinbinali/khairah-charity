@@ -1,15 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext";
 import img from "../../images/login&signup.svg";
 import { Typewriter } from "react-simple-typewriter";
+import toast from "react-hot-toast";
 
 const Signup = () => {
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
-
   const { createUser } = useContext(AuthContext);
 
   const handleSubmitForm = (event) => {
@@ -21,68 +19,16 @@ const Signup = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        setSuccess(user);
-        setError("");
         navigate("/");
+        toast.success('User created successfully!');
       })
       .catch((error) => {
         const errorMessage = error.message;
-        setError(errorMessage);
-        setSuccess("");
+        toast.error(errorMessage);
       });
   };
+
   return (
-    <div>
-      {/* error message */}
-      <div className="w-1/3 mx-auto">
-        {error ? (
-          <div className="alert alert-error shadow-lg">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="stroke-current flex-shrink-0 h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <span>{error}</span>
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
-      {/* success message */}
-      <div className="w-1/3 mx-auto">
-        {success ? (
-          <div className="alert alert-success shadow-lg">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="stroke-current flex-shrink-0 h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <span>Create User Successfully!!</span>
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
       <div className="hero">
         <div className="hero-content md:flex justify-between block">
           <div className="md:w-96 w-80 mx-auto mt-5">
@@ -162,7 +108,6 @@ const Signup = () => {
           </form>
         </div>
       </div>
-    </div>
   );
 };
 

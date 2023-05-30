@@ -13,8 +13,8 @@ const Cause = ({ cause }) => {
       </figure>
       <div className="card-body">
         <p className='text-2xl font-bold'>{name}</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary bg-green-700 border-0"><Link to={`/donationForm/${_id}`}>Donate: ${amount}</Link></button>
+        <div className="card-actions justify-start">
+          <button className="btn w-36 btn-primary bg-green-700 border-0"><Link to={`/donationForm/${_id}`}>Donate: ${amount}</Link></button>
         </div>
       </div>
     </div>

@@ -17,10 +17,10 @@ const Payment = () => {
   }
   return (
     <div className="text-center">
-      <h2 className="text-3xl">
+      <h2 className="text-3xl mt-3 mb-0">
         Payment for <strong className="text-green-700">{title}</strong>
       </h2>
-      <p className="my-3">
+      <p className="my-2">
         Please pay <strong>{amount}</strong> for your donation
       </p>
       <div>

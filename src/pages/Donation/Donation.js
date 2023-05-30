@@ -53,7 +53,6 @@ const Donation = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           const remaining = given.filter((gvn) => gvn._id !== id);
           const approving = given.find((gvn) => gvn._id === id);
@@ -80,18 +79,20 @@ const Donation = () => {
                 <th>Title and Amount</th>
                 <th>Giver and Email</th>
                 <th>Phone</th>
-                <th></th>
+                <th>Approved</th>
+                <th>Payment</th>
               </tr>
             </thead>
             <tbody>
-              {given?.map((give) => (
-                <DonationTable
-                  key={give._id}
-                  give={give}
-                  handleDelete={handleDelete}
-                  handleStatusUpdated={handleStatusUpdated}
-                ></DonationTable>
-              ))}
+              {given &&
+                given?.map((give) => (
+                  <DonationTable
+                    key={give._id}
+                    give={give}
+                    handleDelete={handleDelete}
+                    handleStatusUpdated={handleStatusUpdated}
+                  ></DonationTable>
+                ))}
             </tbody>
           </table>
         </div>

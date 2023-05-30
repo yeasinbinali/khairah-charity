@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/UserContext";
 
@@ -37,7 +38,7 @@ const DonationForm = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          alert("Your information has been successfully sent!!!");
+          toast.success("Your information has been successfully sent!");
           form.reset();
           navigate("/donation");
         }

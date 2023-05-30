@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const DonationTable = ({ give, handleDelete, handleStatusUpdated }) => {
-  const { giver, phone, email, amount, serviceId, _id, status } = give;
+  const { giver, phone, email, amount, serviceId, _id, status, paid } = give;
   const [causes, setCauses] = useState([]);
 
   useEffect(() => {
@@ -53,6 +53,14 @@ const DonationTable = ({ give, handleDelete, handleStatusUpdated }) => {
           >
             {status ? status : "Pending"}
           </button>
+        </th>
+        <th>
+          {status && !paid && (
+            <button className="btn btn-ghost btn-xs">
+              <Link to={`/donation/${_id}`}>Pay</Link>
+            </button>
+          )}
+          {status && paid && <span className="text-green-600">Paid</span>}
         </th>
       </tr>
     </>

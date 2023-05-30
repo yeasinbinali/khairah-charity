@@ -71,7 +71,7 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-outline btn-warning">
+        <button className="btn btn-outline btn-success">
           <Link to="/donation">Donation</Link>
         </button>
       </div>

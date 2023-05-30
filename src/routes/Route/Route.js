@@ -5,6 +5,7 @@ import Donation from "../../pages/Donation/Donation";
 import DonationForm from "../../pages/DonationForm/DonationForm";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
+import Payment from "../../pages/Payment/Payment";
 import Signup from "../../pages/Signup/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -45,6 +46,15 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/donation/:id",
+        element: <Payment></Payment>,
+        loader: async ({ params }) => {
+          return fetch(
+            `https://khairah-charity-server.vercel.app/given/${params.id}`
+          );
+        },
       },
     ],
   },

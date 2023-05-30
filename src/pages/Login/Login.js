@@ -22,6 +22,7 @@ const Login = () => {
     login(email, password)
       .then((result) => {
         const user = result.user;
+        console.log(user);
         const currentUser = {
           email: user.email,
         };
@@ -37,8 +38,9 @@ const Login = () => {
           .then((data) => {
             toast.success("Login successfully!");
             localStorage.setItem("khairah-charity", data.token);
+            navigate(from, { replace: true });
           });
-        navigate(from, { replace: true });
+       
       })
       .catch((error) => {
         const errorMessage = error.message;

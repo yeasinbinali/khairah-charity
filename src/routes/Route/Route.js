@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/donation/:id",
-        element: <Payment></Payment>,
+        element: <PrivateRoute><Payment></Payment></PrivateRoute>,
         loader: async ({ params }) => {
           return fetch(
             `https://khairah-charity-server.vercel.app/given/${params.id}`

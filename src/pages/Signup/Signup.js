@@ -19,8 +19,23 @@ const Signup = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        navigate("/");
-        toast.success('User created successfully!');
+        const currentUser = {
+          email: user.email,
+        };
+
+        fetch("https://khairah-charity-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            toast.success("User created successfully!");
+            localStorage.setItem("khairah-charity", data.token);
+            navigate('/');
+          });
       })
       .catch((error) => {
         const errorMessage = error.message;

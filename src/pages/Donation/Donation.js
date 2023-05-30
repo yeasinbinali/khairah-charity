@@ -65,11 +65,11 @@ const Donation = () => {
 
   return (
     <div>
-      {given.length === 0 ? (
-        <p className="md:text-3xl sm:text-2xl text-center my-5">
-          You have not donate to any fund
-        </p>
-      ) : (
+      {
+        given.length === 0 && <div className="md:text-3xl sm:text-2xl text-center my-5">You have not donate to any fund</div>
+      }
+      {
+        given.length > 0 && 
         <div className="overflow-x-auto w-full my-10">
           <table className="table w-full">
             {/* head */}
@@ -96,7 +96,7 @@ const Donation = () => {
             </tbody>
           </table>
         </div>
-      )}
+      }
     </div>
   );
 };

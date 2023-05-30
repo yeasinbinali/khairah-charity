@@ -69,7 +69,7 @@ const DonationForm = () => {
       </div>
       <div>
         <input
-          type="text"
+          type="number"
           placeholder="Your Phone"
           name="phone"
           className="input input-bordered w-full max-w-sm"

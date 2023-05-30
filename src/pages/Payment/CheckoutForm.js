@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const CheckoutForm = ({ data }) => {
   const stripe = useStripe();
@@ -19,7 +20,7 @@ const CheckoutForm = ({ data }) => {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify({ amount }),
+      body: JSON.stringify({ amount })
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
@@ -127,7 +128,8 @@ const CheckoutForm = ({ data }) => {
           <p className="text-green-600">{success}</p>
           <small className="font-bold">
             Your TransactionId: {transactionId}
-          </small>
+          </small><br/>
+          <Link to='/donation'><button className='btn btn-sm btn-success text-white my-2'>Go Back Donation</button></Link>
         </div>
       )}
     </>

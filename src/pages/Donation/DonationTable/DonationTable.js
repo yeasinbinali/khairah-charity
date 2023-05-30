@@ -56,7 +56,7 @@ const DonationTable = ({ give, handleDelete, handleStatusUpdated }) => {
         </th>
         <th>
           {status && !paid && (
-            <button className="btn btn-ghost btn-xs">
+            <button className="btn btn-success btn-xs">
               <Link to={`/donation/${_id}`}>Pay</Link>
             </button>
           )}

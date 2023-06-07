@@ -26,4 +26,4 @@
     <li>Backend server is running live on <a href='https://vercel.com/dashboard'>Vercel</a></li>
 </ul>
 
-## [View Website Live](https://khairah-charity.web.app/)
+## [View Website Live](https://khairah-charity.web.app)
